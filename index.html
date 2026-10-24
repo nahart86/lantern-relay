@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b22">
+  <meta name="description" content="Lantern Relay is a quiet, offline two-player puzzle about seeing a route, passing the phone, and guiding a partner from memory. Coming soon for iPhone.">
+  <title>Lantern Relay — Find the way together</title>
+  <style>
+    :root { color-scheme: light; --ink:#14252b; --muted:#617075; --paper:#f5f2e9; --cream:#fffdf7; --line:#dfded4; --orange:#e28a4c; --moss:#657d61; --night:#101b22; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    a { color:inherit; }
+    .wrap { width:min(1120px, calc(100% - 40px)); margin:auto; }
+    header { padding:22px 0; display:flex; justify-content:space-between; align-items:center; }
+    .brand { display:flex; gap:11px; align-items:center; text-decoration:none; font-weight:750; letter-spacing:-.03em; }
+    .brand-mark { width:36px; height:36px; border-radius:11px; display:block; box-shadow:0 0 0 4px #e28a4c20; }
+    nav { display:flex; gap:24px; font-size:14px; color:#57666a; }
+    nav a { text-decoration:none; } nav a:hover { color:var(--ink); }
+    .hero { padding:54px 0 76px; display:grid; grid-template-columns:1fr 1fr; align-items:center; gap:38px; }
+    .eyebrow { text-transform:uppercase; letter-spacing:.16em; font-size:11px; font-weight:800; color:var(--moss); }
+    h1 { font-size:clamp(48px,7vw,82px); line-height:.96; letter-spacing:-.075em; margin:18px 0 20px; max-width:580px; }
+    .lead { color:#526167; font-size:19px; line-height:1.55; max-width:490px; margin:0 0 26px; }
+    .status { display:inline-flex; align-items:center; gap:9px; border:1px solid #d4d4c8; background:#fffdf7a8; border-radius:999px; padding:10px 14px; color:#59676b; font-size:13px; }
+    .dot { width:8px; height:8px; border-radius:50%; background:var(--orange); box-shadow:0 0 0 4px #e28a4c25; }
+    .visual { min-height:420px; background:var(--night); border-radius:34px; position:relative; overflow:hidden; display:grid; place-items:center; box-shadow:0 24px 70px #172b2c22; }
+    .moon { position:absolute; width:245px; height:245px; border-radius:50%; background:#f1c16f; top:49px; right:55px; box-shadow:0 0 90px #f1c16f44; }
+    .hill { position:absolute; bottom:-60px; height:240px; width:125%; border-radius:50% 50% 0 0; background:#344c43; transform:rotate(-8deg); }
+    .hill.back { bottom:-104px; left:-80px; background:#20352f; transform:rotate(8deg); }
+    .path { position:absolute; width:230px; height:160px; border:3px dashed #f6d786aa; border-left-color:transparent; border-bottom-color:transparent; border-radius:50%; transform:rotate(28deg); top:162px; left:76px; }
+    .tile { position:absolute; width:37px; height:37px; border:1px solid #f8e9bf44; background:#f4edda18; border-radius:11px; backdrop-filter:blur(5px); }
+    .t1 { left:69px; top:113px; } .t2 { left:119px; top:113px; } .t3 { left:169px; top:113px; } .t4 { left:219px; top:113px; }
+    .t5 { left:69px; top:163px; } .t6 { left:119px; top:163px; } .t7 { left:169px; top:163px; } .t8 { left:219px; top:163px; }
+    .t9 { left:69px; top:213px; } .t10 { left:119px; top:213px; } .t11 { left:169px; top:213px; } .t12 { left:219px; top:213px; }
+    .tile.active { background:#e28a4c; border-color:#ffd08d; box-shadow:0 0 22px #e28a4c77; }
+    .lantern { position:absolute; top:260px; left:243px; font-size:31px; filter:drop-shadow(0 0 14px #ffb86a); }
+    .card-label { position:absolute; z-index:2; left:28px; bottom:25px; color:#fff8e5; font-size:13px; letter-spacing:.04em; }
+    .steps { padding:70px 0 80px; border-top:1px solid var(--line); }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:24px; margin-bottom:27px; }
+    h2 { font-size:clamp(31px,4vw,45px); letter-spacing:-.055em; margin:10px 0 0; }
+    .section-note { color:var(--muted); max-width:320px; line-height:1.5; }
+    .step-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .step { padding:26px; border:1px solid var(--line); border-radius:20px; background:var(--cream); min-height:176px; }
+    .num { color:var(--orange); font-weight:800; font-size:12px; letter-spacing:.12em; }
+    .step h3 { margin:17px 0 8px; font-size:21px; letter-spacing:-.04em; }
+    .step p { margin:0; color:var(--muted); line-height:1.5; font-size:15px; }
+    .worlds { background:#e9e8dc; padding:62px 0 74px; }
+    .world-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:27px; }
+    .world { height:155px; padding:18px; border-radius:18px; display:flex; align-items:end; color:white; font-weight:700; font-size:16px; letter-spacing:-.02em; overflow:hidden; position:relative; }
+    .world:after { content:""; position:absolute; width:170px;height:120px;border-radius:50%;right:-35px;top:-34px;background:#ffffff20; }
+    .grove { background:linear-gradient(145deg,#93a77a,#405c4d); } .tide { background:linear-gradient(145deg,#6bb9b2,#286c78); }
+    .dunes { background:linear-gradient(145deg,#e4ac67,#a95e38); } .summit { background:linear-gradient(145deg,#6c89a1,#263c58); }
+    .promise { padding:74px 0; text-align:center; }
+    .promise p { margin:18px auto 0; color:var(--muted); font-size:17px; line-height:1.65; max-width:660px; }
+    .cta { background:var(--night); color:#f8f2e5; padding:46px; border-radius:28px; display:flex; align-items:center; justify-content:space-between; gap:25px; margin:0 auto 70px; }
+    .cta h2 { margin:0; font-size:34px; } .cta p { margin:9px 0 0; color:#b9c2bc; }
+    .cta .status { background:#ffffff0a; border-color:#ffffff28; color:#e7e2d5; white-space:nowrap; }
+    footer { border-top:1px solid var(--line); padding:22px 0 34px; color:#6a7677; font-size:13px; display:flex; justify-content:space-between; gap:20px; }
+    footer nav { gap:18px; flex-wrap:wrap; }
+    @media(max-width:760px) { .hero { grid-template-columns:1fr; padding:42px 0 56px; } .visual { min-height:350px; } .step-grid { grid-template-columns:1fr; } .world-row { grid-template-columns:repeat(2,1fr); } .section-head { display:block; } .cta { padding:30px; align-items:flex-start; flex-direction:column; } footer { flex-direction:column; } nav { gap:15px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="index.html"><img class="brand-mark" src="images/icon.png" alt=""><span>Lantern Relay</span></a>
+      <nav aria-label="Main navigation"><a href="#how">How to play</a><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">A small adventure for two</div>
+          <h1>Find the way<br>together.</h1>
+          <p class="lead">One player studies a path. The other takes the phone and follows it from memory. Lantern Relay turns a shared screen into a little test of attention, trust, and clear directions.</p>
+          <div class="status"><span class="dot"></span> iPhone beta is not open yet</div>
+        </div>
+        <div class="visual" role="img" aria-label="A glowing lantern marks a winding path across a night-time puzzle grid">
+          <div class="moon"></div><div class="hill back"></div><div class="hill"></div><div class="path"></div>
+          <i class="tile t1"></i><i class="tile t2"></i><i class="tile t3"></i><i class="tile t4"></i>
+          <i class="tile t5 active"></i><i class="tile t6"></i><i class="tile t7 active"></i><i class="tile t8"></i>
+          <i class="tile t9"></i><i class="tile t10 active"></i><i class="tile t11"></i><i class="tile t12 active"></i>
+          <span class="lantern" aria-hidden="true">🏮</span><div class="card-label">SEE IT. PASS IT. GUIDE IT.</div>
+        </div>
+      </section>
+      <section class="steps" id="how">
+        <div class="section-head"><div><div class="eyebrow">The relay</div><h2>One phone. Two points of view.</h2></div><div class="section-note">No rush, no lives to lose, and nothing to buy. The fun comes from remembering and explaining.</div></div>
+        <div class="step-grid">
+          <article class="step"><div class="num">01 / SCOUT</div><h3>Study the route</h3><p>Trace a path through a compact grid while you can still see it.</p></article>
+          <article class="step"><div class="num">02 / PASS</div><h3>Hand over the phone</h3><p>The route disappears. Your partner takes the Keeper’s turn.</p></article>
+          <article class="step"><div class="num">03 / GUIDE</div><h3>Find the lantern</h3><p>Guide the Keeper from memory. Fewer peeks and wrong turns earn a brighter lantern.</p></article>
+        </div>
+      </section>
+    </div>
+    <section class="worlds">
+      <div class="wrap"><div class="eyebrow">Four chapters · 24 expeditions</div><h2>A new little landscape to learn.</h2>
+        <div class="world-row"><div class="world grove">Dewlight Grove</div><div class="world tide">Tidal Garden</div><div class="world dunes">Amber Dunes</div><div class="world summit">Midnight Summit</div></div>
+      </div>
+    </section>
+    <div class="wrap">
+      <section class="promise"><div class="eyebrow">Made for a shared moment</div><h2>Quiet by design.</h2><p>Lantern Relay is an offline, two-player pass-and-play puzzle for iPhone. Campaign progress, an active route, and the haptics preference are saved on your device. The app has no account, network service, analytics tools, ads, or in-app purchases.</p></section>
+      <section class="cta"><div><h2>Coming to iPhone</h2><p>TestFlight access and an App Store listing are not available yet.</p></div><div class="status"><span class="dot"></span> Beta sign-up not open</div></section>
+    </div>
+  </main>
+  <div class="wrap"><footer><span>© 2026 Lantern Relay · An independent project</span><nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="https://github.com/nahart86/lantern-relay/issues">Contact support</a></nav></footer></div>
+</body>
+</html>
