@@ -45,6 +45,14 @@
     .num { color:var(--orange); font-weight:800; font-size:12px; letter-spacing:.12em; }
     .step h3 { margin:17px 0 8px; font-size:21px; letter-spacing:-.04em; }
     .step p { margin:0; color:var(--muted); line-height:1.5; font-size:15px; }
+    .gallery { padding:0 0 78px; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .gallery-card { overflow:hidden; border:1px solid var(--line); border-radius:22px; background:var(--cream); box-shadow:0 12px 34px #172b2c0d; }
+    .gallery-card img { display:block; width:100%; height:auto; aspect-ratio:1398 / 2034; object-fit:cover; background:#e9e8dc; }
+    .gallery-copy { padding:19px 20px 21px; }
+    .gallery-copy .num { display:block; }
+    .gallery-copy h3 { margin:9px 0 6px; font-size:20px; letter-spacing:-.04em; }
+    .gallery-copy p { margin:0; color:var(--muted); font-size:14px; line-height:1.5; }
     .worlds { background:#e9e8dc; padding:62px 0 74px; }
     .world-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:27px; }
     .world { height:155px; padding:18px; border-radius:18px; display:flex; align-items:end; color:white; font-weight:700; font-size:16px; letter-spacing:-.02em; overflow:hidden; position:relative; }
@@ -58,7 +66,7 @@
     .cta .status { background:#ffffff0a; border-color:#ffffff28; color:#e7e2d5; white-space:nowrap; }
     footer { border-top:1px solid var(--line); padding:22px 0 34px; color:#6a7677; font-size:13px; display:flex; justify-content:space-between; gap:20px; }
     footer nav { gap:18px; flex-wrap:wrap; }
-    @media(max-width:760px) { .hero { grid-template-columns:1fr; padding:42px 0 56px; } .visual { min-height:350px; } .step-grid { grid-template-columns:1fr; } .world-row { grid-template-columns:repeat(2,1fr); } .section-head { display:block; } .cta { padding:30px; align-items:flex-start; flex-direction:column; } footer { flex-direction:column; } nav { gap:15px; } }
+    @media(max-width:760px) { .hero { grid-template-columns:1fr; padding:42px 0 56px; } .visual { min-height:350px; } .step-grid { grid-template-columns:1fr; } .gallery-grid { grid-template-columns:1fr; gap:14px; } .gallery-card { display:grid; grid-template-columns:minmax(115px,38%) 1fr; align-items:center; } .gallery-card img { height:100%; aspect-ratio:1398 / 2034; object-fit:cover; } .gallery-copy { padding:16px; } .world-row { grid-template-columns:repeat(2,1fr); } .section-head { display:block; } .cta { padding:30px; align-items:flex-start; flex-direction:column; } footer { flex-direction:column; } nav { gap:15px; } }
   </style>
 </head>
 <body>
@@ -73,7 +81,7 @@
           <div class="eyebrow">A small adventure for two</div>
           <h1>Find the way<br>together.</h1>
           <p class="lead">One player studies a path. The other takes the phone and follows it from memory. Lantern Relay turns a shared screen into a little test of attention, trust, and clear directions.</p>
-          <div class="status"><span class="dot"></span> iPhone beta is not open yet</div>
+          <div class="status"><span class="dot"></span> iPhone beta is waiting for review</div>
         </div>
         <div class="visual" role="img" aria-label="A glowing lantern marks a winding path across a night-time puzzle grid">
           <div class="moon"></div><div class="hill back"></div><div class="hill"></div><div class="path"></div>
@@ -81,6 +89,14 @@
           <i class="tile t5 active"></i><i class="tile t6"></i><i class="tile t7 active"></i><i class="tile t8"></i>
           <i class="tile t9"></i><i class="tile t10 active"></i><i class="tile t11"></i><i class="tile t12 active"></i>
           <span class="lantern" aria-hidden="true">🏮</span><div class="card-label">SEE IT. PASS IT. GUIDE IT.</div>
+        </div>
+      </section>
+      <section class="gallery" aria-labelledby="gallery-title">
+        <div class="section-head"><div><div class="eyebrow">A look at the relay</div><h2 id="gallery-title">See it. Pass it. Guide it.</h2></div><div class="section-note">Three moments from the iPhone Duo layout, built around sharing one screen.</div></div>
+        <div class="gallery-grid">
+          <figure class="gallery-card"><img src="images/duo-scout.png" width="1398" height="2034" loading="lazy" alt="Scout studies the hidden route on the Duo screen"><figcaption class="gallery-copy"><span class="num">01 / SCOUT</span><h3>Take in the route</h3><p>Study the path before handing over the phone.</p></figcaption></figure>
+          <figure class="gallery-card"><img src="images/duo-handoff.png" width="1398" height="2034" loading="lazy" alt="A handoff screen prompts players to pass the iPhone"><figcaption class="gallery-copy"><span class="num">02 / PASS</span><h3>Switch points of view</h3><p>The Keeper gets a clean view before tracing from memory.</p></figcaption></figure>
+          <figure class="gallery-card"><img src="images/duo-keeper.png" width="1398" height="2034" loading="lazy" alt="Keeper follows the route from memory on the puzzle grid"><figcaption class="gallery-copy"><span class="num">03 / KEEPER</span><h3>Guide each step</h3><p>Work together to find the lantern and finish the expedition.</p></figcaption></figure>
         </div>
       </section>
       <section class="steps" id="how">
@@ -99,7 +115,7 @@
     </section>
     <div class="wrap">
       <section class="promise"><div class="eyebrow">Made for a shared moment</div><h2>Quiet by design.</h2><p>Lantern Relay is an offline, two-player pass-and-play puzzle for iPhone. Campaign progress, an active route, and the haptics preference are saved on your device. The app has no account, network service, analytics tools, ads, or in-app purchases.</p></section>
-      <section class="cta"><div><h2>Coming to iPhone</h2><p>TestFlight access and an App Store listing are not available yet.</p></div><div class="status"><span class="dot"></span> Beta sign-up not open</div></section>
+      <section class="cta"><div><h2>Coming to iPhone</h2><p>TestFlight beta access is waiting for Apple review. The App Store listing is not available yet.</p></div><div class="status"><span class="dot"></span> Beta access not open</div></section>
     </div>
   </main>
   <div class="wrap"><footer><span>© 2026 Lantern Relay · An independent project</span><nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="https://github.com/nahart86/lantern-relay/issues">Contact support</a></nav></footer></div>
