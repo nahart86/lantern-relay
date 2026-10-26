@@ -22,7 +22,7 @@
     .eyebrow { text-transform:uppercase; letter-spacing:.16em; font-size:11px; font-weight:800; color:var(--moss); }
     h1 { font-size:clamp(48px,7vw,82px); line-height:.96; letter-spacing:-.075em; margin:18px 0 20px; max-width:580px; }
     .lead { color:#526167; font-size:19px; line-height:1.55; max-width:490px; margin:0 0 26px; }
-    .status { display:inline-flex; align-items:center; gap:9px; border:1px solid #d4d4c8; background:#fffdf7a8; border-radius:999px; padding:10px 14px; color:#59676b; font-size:13px; }
+    .status { display:inline-flex; align-items:center; gap:9px; border:1px solid #d4d4c8; background:#fffdf7a8; border-radius:999px; padding:10px 14px; color:#59676b; font-size:13px; text-decoration:none; }
     .dot { width:8px; height:8px; border-radius:50%; background:var(--orange); box-shadow:0 0 0 4px #e28a4c25; }
     .visual { min-height:420px; background:var(--night); border-radius:34px; position:relative; overflow:hidden; display:grid; place-items:center; box-shadow:0 24px 70px #172b2c22; }
     .moon { position:absolute; width:245px; height:245px; border-radius:50%; background:#f1c16f; top:49px; right:55px; box-shadow:0 0 90px #f1c16f44; }
@@ -81,7 +81,7 @@
           <div class="eyebrow">A small adventure for two</div>
           <h1>Find the way<br>together.</h1>
           <p class="lead">One player studies a path. The other takes the phone and follows it from memory. Lantern Relay turns a shared screen into a little test of attention, trust, and clear directions.</p>
-          <div class="status"><span class="dot"></span> iPhone beta is waiting for review</div>
+          <a class="status" href="https://testflight.apple.com/join/kJFKD5p8"><span class="dot"></span> Public TestFlight beta is open ↗</a>
         </div>
         <div class="visual" role="img" aria-label="A glowing lantern marks a winding path across a night-time puzzle grid">
           <div class="moon"></div><div class="hill back"></div><div class="hill"></div><div class="path"></div>
@@ -115,7 +115,7 @@
     </section>
     <div class="wrap">
       <section class="promise"><div class="eyebrow">Made for a shared moment</div><h2>Quiet by design.</h2><p>Lantern Relay is an offline, two-player pass-and-play puzzle for iPhone. Campaign progress, an active route, and the haptics preference are saved on your device. The app has no account, network service, analytics tools, ads, or in-app purchases.</p></section>
-      <section class="cta"><div><h2>Coming to iPhone</h2><p>TestFlight beta access is waiting for Apple review. The App Store listing is not available yet.</p></div><div class="status"><span class="dot"></span> Beta access not open</div></section>
+      <section class="cta"><div><h2>Try the beta</h2><p>Join Lantern Relay through TestFlight. The App Store version is still waiting for review.</p></div><a class="status" href="https://testflight.apple.com/join/kJFKD5p8"><span class="dot"></span> View in TestFlight ↗</a></section>
     </div>
   </main>
   <div class="wrap"><footer><span>© 2026 Lantern Relay · An independent project</span><nav aria-label="Footer"><a href="support.html">Support</a><a href="privacy.html">Privacy</a><a href="https://github.com/nahart86/lantern-relay/issues">Contact support</a></nav></footer></div>
